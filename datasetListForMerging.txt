@@ -1,0 +1,35 @@
+##### Dataset_name xs (in pb, for data set to -1)
+data:
+output_dataG_mueg -1
+
+## MC
+
+ttbar: L=6260
+output_ttbar 831.77
+
+dy: L=6260
+output_dy1 18610 
+output_dy2 6025
+
+st: L=6260
+output_st1 35.85
+output_st2 35.85
+
+ww: L=6260
+output_ww 118.7
+
+wz: L=6260
+output_wz 47.13
+
+zz: L=6260
+output_zz 16.5
+
+mc: L=6260
+output_ttbar 831.77
+output_dy1 18610 
+output_dy2 6025
+output_st1 35.85
+output_st2 35.85
+output_ww 118.7
+output_wz 47.13
+output_zz 16.5

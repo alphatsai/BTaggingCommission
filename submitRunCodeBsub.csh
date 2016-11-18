@@ -11,7 +11,7 @@ endif
 
 set here=`echo $PWD | sed 's/\//\\\//g'`
 set out=`echo $PWD/$2 | sed 's/\//\\\//g'`
-set totalN=9
+set totalN=`cat runCode4ttbar.C | grep 'Nsamples=' | sed 's/.*=\(.*\);/\1/g'`
 if ( $1 == 'all' ) then
     set i=0
     while ( $i < $totalN )
