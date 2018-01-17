@@ -1,5 +1,42 @@
-# BTaggingCommission
-ttbar leptonic channel
+# [Validation] b-tagging commissioning
+
+*<div style="text-align: center;" markdown="1">`likelihood` `classification` `Monte Carol` `statistics` `collabration`</div>*
+
+## Introduction
+The raw LHC data contains pure digital information from each pattern of detectors. To do the physics data analysis, the digital information has to be reconstructed to particle information, e.g. vertex, tracks, energy  and charge, by vertexing algorithms, tracking algorithms, clustering etc...  
+
+The $\text{b}$ quark, the third generation of quark with bottom flavour in the Standard Model (SM), is an heavy particle and can not be captured alone, i.e. it always attachs with other particles (*bonded state*) and decays rapidly to more others. The mechanism for the quarks is called [*hadronization*](https://en.wikipedia.org/wiki/Hadronization). Thus, it turns to be a *jet* which is an object containing several particles. The sum of mass and momentum of jet should be the same with origin particle. The $\text{b}$ jet is the jet resulted from $\text{b}$-quark decays and hadronizations. The special feature of $\text{b}$ quark is its long *decay length*, i.e. the lifetime is larger than other quarks. With the sensitive detectors, that makes $\text{b}$ jet can be recognized.
+
+The LHC data contains many $\text{b}$ quarks due to high energy hadron collisions. To recognize the $\text{b}$ jet, the $\text{b}$-tagging algorithms are applied in several data analyses. There are varied algorithms dependent on the difference of vertexing algorithm, topological assumption and classification models. The overall procedures are based on the topological assumption to build the classification model. The algorithms are validated with data-driven sample which contains rich $\text{b}$ jets.
+
+## Techniques 
+### 1. Basic classification algorithm
+The well-known property of $\text{b}$ jet is the relatively large lifetime which is about 1.5 ps ($c_{\tau} \approx 450\ \mu \rm m$), but it is still less than $\pi^\pm$ or $\rm K^\pm$ particles. This property can be observed in high resolution tracking detectors, e.g. the *track of charge particle* is incompatible with the *primary vertex (PV)* , and a *secondary vertex (SV)* displaced from PV as the below figure. Thus, these variety of reconstructed objects can be used to build observables that discriminate between $\text{b}$ and other jets. Several simple and robust algorithms use just a single observable, while others combine several of these objects to achieve a higher discrimination power. Each of these algorithms yields a single discriminator value for each jet by using *impact parameters* with ***likelihood function***.
+
+<div style="text-align: center;" markdown="1"><img src="http://hep1.phys.ntu.edu.tw/~alpha78718/cv/btagging.png" height="250"></div>
+<br>
+
+Two popular algorithms in CMS are the ***Combined Secondary vertex (CSV)*** and ***Combined multivariate algorithm (CMVA)*** algorithm. Both algorithms are used different techniques to ensemble the discriminatior values. *CSV* uses the ***neural network (NN)*** with one hinden layer. It ensemble all single discriminators to a powerful discriminator value. While *CMVA* uses the ***Boosted Decision Tree (BDT)*** to train the variables.
+
+### 2. Validation method
+The vailidation is done with the data sample selected for top-qaurk pair ($\text{t}\bar{\text{t}}$) events, since the top quark decays to $\text{b}$ quark and $\text{W}$ boson. Thus, this is the good source having rich $\text{b}$ jet. We check the variables used for training and compare with MC samples. 
+
+<div style="text-align: center;" markdown="1"><img src="https://i.imgur.com/3JoC43d.png" width="350"><img src="https://i.imgur.com/yrm7iOZ.png" width="350"></div>
+<br>
+
+Since the variables are related to the detectors, they are sensitive to the collision condistion and electronic devices. Sometimes we can see the discrepancy between data and MC. There happends once in 2016 data. Due to the new high energy, too many produced particles staturated the detector. The dectors have large *deadtime*, i.e. some signal lost. The performace of b-tagging were changed with time-dependency.
+
+<div style="text-align: center;" markdown="1"><img src="https://i.imgur.com/bIw5vep.png" height="300"></div>
+
+## Results
+My responsibility is performing the validation of all algorithms. As mentioned in above, I exprienced the bad condition of data-taking. The validation had the challanges and had to keep commulating with devlopers. In the end, we solve the problem by providing the scale factor depending on the taking time for all data analysis in CMS. This give a chance to shows my ability to solve problem. This international group invited me to give the internal summery at CERN, see the [publication](https://cds.cern.ch/record/2160345?ln=en).
+
+## References
+- [Identification of b-quark jets with the CMS experiment](http://iopscience.iop.org/article/10.1088/1748-0221/8/04/P04013/meta)
+- [Identification of b quark jets at the CMS Experiment in the LHC Run 2](https://cds.cern.ch/record/2138504)
+- Github : https://github.com/juifa-tsai/BTaggingCommission
+
+---
 
 ## BTag Ntuples ( including ttbar selections )
 
