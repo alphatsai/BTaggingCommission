@@ -19,7 +19,7 @@ The well-known property of $\text{b}$ jet is the relatively large lifetime which
 Two popular algorithms in CMS are the ***Combined Secondary vertex (CSV)*** and ***Combined multivariate algorithm (CMVA)*** algorithm. Both algorithms are used different techniques to ensemble the discriminatior values. *CSV* uses the ***neural network (NN)*** with one hinden layer. It ensemble all single discriminators to a powerful discriminator value. While *CMVA* uses the ***Boosted Decision Tree (BDT)*** to train the variables.
 
 ### 2. Validation method
-The vailidation is done with the data sample selected for top-qaurk pair ($\text{t}\bar{\text{t}}$) events, since the top quark decays to $\text{b}$ quark and $\text{W}$ boson. Thus, this is the good source having rich $\text{b}$ jet. We check the variables used for training and compare with MC samples. 
+The vailidation is done with the data sample selected for leptonic decaying top-qaurk pair ($\text{t}\bar{\text{t}}$) events, since the top quark decays to $\text{b}$ quark and $\text{W}$ boson, which $\text{W}$ decays to leptons ($e+\nu_e,\,\mu+\nu_{\mu},\,\tau+\nu_{\tau}$).  Thus, this is the good source having rich $\text{b}$ jet. We check the variables used for training and compare with MC samples. 
 
 <div style="text-align: center;" markdown="1"><img src="https://i.imgur.com/3JoC43d.png" width="350"><img src="https://i.imgur.com/yrm7iOZ.png" width="350"></div>
 <br>
