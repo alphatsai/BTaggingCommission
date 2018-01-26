@@ -1,11 +1,55 @@
-# BTaggingCommission
-ttbar leptonic channel
-#### BTag Ntuples ( including ttbar selections )
-## .py
+# [Validation] b-tagging commissioning
+
+*<div style="text-align: center;" markdown="1">`likelihood` `classification` `Monte Carol` `statistics` `collabration`</div>*
+
+Same article: https://hackmd.io/s/rkavdgSEG
+
+## Introduction
+The raw LHC data contains pure digital information from each pattern of detectors. To do the physics data analysis, the digital information has to be reconstructed to particle information, e.g. vertex, tracks, energy  and charge, by vertexing algorithms, tracking algorithms, clustering etc...  
+
+The $\text{b}$ quark, the third generation of quark with bottom flavour in the Standard Model (SM), is an heavy particle and can not be captured alone, i.e. it always attachs with other particles (*bonded state*) and decays rapidly to more others. The mechanism for the quarks is called [*hadronization*](https://en.wikipedia.org/wiki/Hadronization). Thus, it turns to be a *jet* which is an object containing several particles. The sum of mass and momentum of jet should be the same with origin particle. The $\text{b}$ jet is the jet resulted from $\text{b}$-quark decays and hadronizations. The special feature of $\text{b}$ quark is its long *decay length*, i.e. the lifetime is larger than other quarks. With the sensitive detectors, that makes $\text{b}$ jet can be recognized.
+
+The LHC data contains many $\text{b}$ quarks due to high energy hadron collisions. To recognize the $\text{b}$ jet, the $\text{b}$-tagging algorithms are applied in several data analyses. There are varied algorithms dependent on the difference of vertexing algorithm, topological assumption and classification models. The overall procedures are based on the topological assumption to build the classification model. The algorithms are validated with data-driven sample which contains rich $\text{b}$ jets.
+
+## Techniques 
+### 1. Basic classification algorithm
+The well-known property of $\text{b}$ jet is the relatively large lifetime which is about 1.5 ps ($c_{\tau} \approx 450\ \mu \rm m$), but it is still less than $\pi^\pm$ or $\rm K^\pm$ particles. This property can be observed in high resolution tracking detectors, e.g. the *track of charge particle* is incompatible with the *primary vertex (PV)* , and a *secondary vertex (SV)* displaced from PV as the below figure. Thus, these variety of reconstructed objects can be used to build observables that discriminate between $\text{b}$ and other jets. Several simple and robust algorithms use just a single observable, while others combine several of these objects to achieve a higher discrimination power. Each of these algorithms yields a single discriminator value for each jet by using *impact parameters* with ***likelihood function***.
+
+<div style="text-align: center;" markdown="1"><img src="http://hep1.phys.ntu.edu.tw/~alpha78718/cv/btagging.png" height="250"></div>
+<br>
+
+Two popular algorithms in CMS are the ***Combined Secondary vertex (CSV)*** and ***Combined multivariate algorithm (CMVA)*** algorithm. Both algorithms are used different techniques to ensemble the discriminatior values. *CSV* uses the ***neural network (NN)*** with one hinden layer. It ensemble all single discriminators to a powerful discriminator value. While *CMVA* uses the ***Boosted Decision Tree (BDT)*** to train the variables.
+
+### 2. Validation method
+The vailidation is done with the data sample selected for leptonic decaying top-qaurk pair ($\text{t}\bar{\text{t}}$) events, since the top quark decays to $\text{b}$ quark and $\text{W}$ boson, which $\text{W}$ decays to leptons ($e+\nu_e,\,\mu+\nu_{\mu},\,\tau+\nu_{\tau}$).  Thus, this is the good source having rich $\text{b}$ jet. We check the variables used for training and compare with MC samples. 
+
+<div style="text-align: center;" markdown="1"><img src="https://i.imgur.com/3JoC43d.png" width="350"><img src="https://i.imgur.com/yrm7iOZ.png" width="350"></div>
+<br>
+
+Since the variables are related to the detectors, they are sensitive to the collision condistion and electronic devices. Sometimes we can see the discrepancy between data and MC. There happends once in 2016 data. Due to the new high energy, too many produced particles staturated the detector. The dectors have large *deadtime*, i.e. some signal lost. The performace of b-tagging were changed with time-dependency.
+
+<div style="text-align: center;" markdown="1"><img src="https://i.imgur.com/bIw5vep.png" height="300"></div>
+
+## Results
+My responsibility is performing the validation of all algorithms. As mentioned in above, I exprienced the bad condition of data-taking. The validation had the challanges and had to keep commulating with devlopers. In the end, we solve the problem by providing the scale factor depending on the taking time for all data analysis in CMS. This give a chance to shows my ability to solve problem. This international group invited me to give the internal summery at CERN, see the [publication](https://cds.cern.ch/record/2160345?ln=en).
+
+## References
+- [Identification of b-quark jets with the CMS experiment](http://iopscience.iop.org/article/10.1088/1748-0221/8/04/P04013/meta)
+- [Identification of b quark jets at the CMS Experiment in the LHC Run 2](https://cds.cern.ch/record/2138504)
+- Github : https://github.com/juifa-tsai/BTaggingCommission
+
+---
+
+## BTag Ntuples ( including ttbar selections )
+
+### .py file
 runBTagAnalyzer_cfg.py
 
+```bash
 cmsRun runBTagAnalyzer_cfg.py maxEvents=100 reportEvery=1 wantSummary=True  useTTbarFilter=True
+```
 
+```python
 useTTbarFilter=True
 
 process.btagana.useSelectedTracks = False 
@@ -15,31 +59,33 @@ process.btagana.produceJetTrackTree = True
 process.btagana.produceAllTrackTree = True 
 process.btagana.storeTagVariables = True 
 process.btagana.storeCSVTagVariables = True
+```
 
-## For commissioning samples 
-# Run2015: /eos/cms/store/group/phys_btag/Commissioning/TTbar/25ns/
-Data13TeV_MuonEG_2015C
-Data13TeV_MuonEG_2015D
-MC13TeV_TTJets_powheg_pythia8
-MC13TeV_DY10to50
-MC13TeV_DY50toInf
-MC13TeV_SingleTbar_tW
-MC13TeV_SingleT_tW
-MC13TeV_WWTo2L2Nu
-MC13TeV_WZ
-MC13TeV_ZZ
+### Commissioning samples 
+#### Data
+- Run2015: /eos/cms/store/group/phys_btag/Commissioning/TTbar/25ns/  
+Data13TeV_MuonEG_2015C  
+Data13TeV_MuonEG_2015D  
+MC13TeV_TTJets_powheg_pythia8  
+MC13TeV_DY10to50  
+MC13TeV_DY50toInf  
+MC13TeV_SingleTbar_tW  
+MC13TeV_SingleT_tW  
+MC13TeV_WWTo2L2Nu  
+MC13TeV_WZ  
+M3C13TeV_ZZ  
 
-# Run2016 May (Updating...):
-
+- Run2016 May (Updating...):
 dataset dataset=/TT_TuneCUETP8M1_13TeV-powheg-pythia8/*80X*/MINIAODSIM status=*
 
-# submition command:
-
-python submitToGrid.py -j data/samples_Run2015_25ns.json -c ${CMSSW_BASE}/src/RecoBTag/PerformanceMeasurements/test/runBTagAnalyzer_cfg.py --lfn [outputEOSDir] -l [lumi.json] -w [workdir] -s 
-
-# CMSSW_8_0_5_patch1
-# ttbar:
-# Example on cmseos: /afs/cern.ch/user/j/jtsai/eos/cms/store/mc/RunIISpring16DR80/TT_TuneCUETP8M1_13TeV-powheg-pythia8/MINIAODSIM/PUSpring16_80X_mcRun2_asymptotic_2016_v3_ext3-v1/70000/60910103-2F20-E611-A5E6-02163E0115FF.root
+##### submition command:
+```bash
+python submitToGrid.py -j data/samples_Run2015_25ns.json -c ${CMSSW_BASE}/src/RecoBTag/PerformanceMeasurements/test/runBTagAnalyzer_cfg.py --lfn [outputEOSDir] -l [lumi.json] -w [workdir] -s
+```
+#### MC
+- CMSSW_8_0_5_patch1
+**ttbar**
+Example on cmseos: /afs/cern.ch/user/j/jtsai/eos/cms/store/mc/RunIISpring16DR80/TT_TuneCUETP8M1_13TeV-powheg-pythia8/MINIAODSIM/PUSpring16_80X_mcRun2_asymptotic_2016_v3_ext3-v1/70000/60910103-2F20-E611-A5E6-02163E0115FF.root
 
 /TTTo2L2Nu_noSC_TuneCUETP8M1_alphaS01273_13TeV-powheg-pythia8/RunIISpring16MiniAODv2-PUSpring16_80X_mcRun2_asymptotic_2016_miniAODv2_v0-v1/MINIAODSIM
 
@@ -50,34 +96,30 @@ python submitToGrid.py -j data/samples_Run2015_25ns.json -c ${CMSSW_BASE}/src/Re
 /ZZ_TuneCUETP8M1_13TeV-pythia8/RunIISpring16MiniAODv2-PUSpring16_80X_mcRun2_asymptotic_2016_miniAODv2_v0-v1/MINIAODSIM
 
 
-# CMSSW_8_0_3_patch1
-# ttbar:
-/TT_TuneCUETP8M1_13TeV-powheg-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3_ext3-v1/MINIAODSIM
-
-/TTTo2L2Nu_noSC_TuneCUETP8M1_alphaS01273_13TeV-powheg-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
-/TT_TuneCUETP8M1noCR_13TeV-powheg-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
-/TT_TuneCUETP8M1mpiOFF_13TeV-powheg-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
-
-#/TTTo2L2Nu_TuneCUETP8M1_alphaS01273_13TeV-powheg-scaleup-pythia8/RunIISpring16MiniAODv2-PUSpring16_80X_mcRun2_asymptotic_2016_miniAODv2_v0-v1/MINIAODSIM
-#/TTTo2L2Nu_TuneCUETP8M1_alphaS01273_13TeV-powheg-scaleup-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
-#/TT_TuneCUETP8M1_13TeV-powheg-scaledown-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
-#/TT_TuneCUETP8M1_13TeV-powheg-scaleup-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
-
-# DY 
-/DYJetsToLL_M-10to50_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
-/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
-
-/DYJetsToLL_M-10to50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
-/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISpring16MiniAODv1-PUFlat0to50_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
-
-# Single t (tW)
-/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
-/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
+- CMSSW_8_0_3_patch1  
+**ttbar**  
+/TT_TuneCUETP8M1_13TeV-powheg-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3_ext3-v1/MINIAODSIM  
+/TTTo2L2Nu_noSC_TuneCUETP8M1_alphaS01273_13TeV-powheg-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
+/TT_TuneCUETP8M1noCR_13TeV-powheg-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
+/TT_TuneCUETP8M1mpiOFF_13TeV-powheg-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
+**Not use**   
+/TTTo2L2Nu_TuneCUETP8M1_alphaS01273_13TeV-powheg-scaleup-pythia8/RunIISpring16MiniAODv2-PUSpring16_80X_mcRun2_asymptotic_2016_miniAODv2_v0-v1/MINIAODSIM  
+/TTTo2L2Nu_TuneCUETP8M1_alphaS01273_13TeV-powheg-scaleup-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
+/TT_TuneCUETP8M1_13TeV-powheg-scaledown-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
+/TT_TuneCUETP8M1_13TeV-powheg-scaleup-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
+**DY**   
+/DYJetsToLL_M-10to50_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
+/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
+/DYJetsToLL_M-10to50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
+/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISpring16MiniAODv1-PUFlat0to50_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
+**Single t (tW)**
+/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
+/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM  
 
 /ST_tW_top_5f_NoFullyHadronicDecays_13TeV-powheg_TuneCUETP8M1/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
 /ST_tW_antitop_5f_NoFullyHadronicDecays_13TeV-powheg_TuneCUETP8M1/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v2/MINIAODSIM
 
-# WWTo2L2Nu, WZ, ZZ
+**WWTo2L2Nu, WZ, ZZ**
 /WWTo2L2Nu_13TeV-powheg/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
 /WWTo2L2Nu_13TeV-powheg-herwigpp/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/MINIAODSIM
 
@@ -85,18 +127,18 @@ python submitToGrid.py -j data/samples_Run2015_25ns.json -c ${CMSSW_BASE}/src/Re
 /ZZ_TuneCUETP8M1_13TeV-pythia8/RunIISpring16MiniAODv1-PUSpring16_80X_mcRun2_asymptotic_2016_v3-v2/MINIAODSIM
 
 
-## Root contain
-# tree
+### Root contain
+- tree
 btagana/ttree
-# tatal event number in TH1F
+- tatal event number in TH1F
 ttbarselectionproducer/wgtcounter GetBinContent(1)
 allEventCount/hEventCount GetEntries()
-# size 
+- size 
 7 Kbit/evt
 
-#### Usage for macros in : RecoBTag/PerformanceMeasurements/test/BTagAnalyzerMacros
-#### ttbar leptonic analysis codes #####
-## .C 
+## Usage for macros in : RecoBTag/PerformanceMeasurements/test/BTagAnalyzerMacros
+### ttbar leptonic analysis codes
+#### .C 
 1. TTbarSelector.C
     * Corrections and efficiency weighting
     * Event selection
@@ -164,7 +206,7 @@ allEventCount/hEventCount GetEntries()
         * "__plus" and "__minus"
         * "lept", "trig", "PU", "jes", "jer", "PDF", "scale1", "scale2", "metuncls", "toppt", "btag", "mistag"
 
-## .h
+#### .h
 1. TTbarSelector.h
     * Define class "TTbarSelector"
 
@@ -172,26 +214,26 @@ allEventCount/hEventCount GetEntries()
     * Define class "CommPlotProducer4ttbar"
     * Load "../TTbarSelector.h"
 
-#### ttbar leptonic plotting macros #####
-## .C
+### ttbar leptonic plotting macros #####
+#### .C
 1. DrawCommPlot4ttbar.C 
 
 
-#### README.d #####
+### README.d #####
 
-## To run the ttbar analysis in order to produce commissioning plots or performance to compute SF:
+#### To run the ttbar analysis in order to produce commissioning plots or performance to compute SF:
 
 root -l
 gROOT->ProcessLine(".L ../TTbarSelector.C+"); 
 gROOT->ProcessLine(".L CommPlotProducer4ttbar.C++"); 
 .x runCode4ttbar.C+
 
-## To draw plots,
+#### To draw plots,
 
 root -l
 gROOT->ProcessLine(".L DrawCommPlot4ttbar.C++");
 
-## In BTV-15-001:
+#### In BTV-15-001:
 
 Draw("track_IPs" , "3D IP significance of tracks",1); 
 Draw("sv_flight3DSig","SV 3D flight distance significance",1); 
